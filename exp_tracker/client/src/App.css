@@ -29,9 +29,10 @@
 }
  
 .title{
-  /* top: 40%; */
-  top: 53%;
+  top: 46%;
   left: 21%;
-  
+}
 
+.form-input{
+  @apply py-4 mt-1 block w-full border-slate-700 focus:outline-none focus:ring-indigo-500 rounded-md
 }
