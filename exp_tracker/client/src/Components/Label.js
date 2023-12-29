@@ -24,7 +24,7 @@ const obj=[
 
 export default function Label() {
   
-  const traverse=obj.map(data=>{return(<ShowLabelComponent objdata={data} />)})
+  const traverse=obj.map((data,i)=>{return(<ShowLabelComponent key={i} objdata={data} />)})
   return(
     traverse
   )

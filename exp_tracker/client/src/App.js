@@ -4,6 +4,9 @@ import Graph from './Components/Graph'
 import Form from './Components/Form';
 
 
+
+
+
 function App() {
   return (
     <div className='App'>
@@ -12,7 +15,7 @@ function App() {
         <h1 className=" text-4xl py-8 mb-10 bg-slate-800 text-white rounded ">EXPENSE TRACKER</h1>
 
         {/* GRID COLUMNS */}
-        <div className="grid md:grid-cols-2 gap-4">
+        <div className="grid md:grid-cols-2 gap-12">
         <Graph/>
         <Form/>
         </div>
