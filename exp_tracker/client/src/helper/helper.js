@@ -1,6 +1,7 @@
 import _ from 'lodash'
 
 
+
 export function getSum(transaction,type){
     const sum=_(transaction)
                 .groupBy("type")
@@ -26,4 +27,34 @@ export function getLabels(transaction){
                 .value()
 
     return percent
+}
+
+export function chart_Data(transaction){
+
+    let bg=_.map(transaction,a=>a.color)
+    bg=_.uniq(bg)
+
+    
+    let dataValue=getSum(transaction)
+    const config={
+        data:{
+          datasets: [{
+              label: 'My First Dataset',
+              data: dataValue,
+              backgroundColor: bg,
+              hoverOffset: 4,
+              borderRadius:30,
+              spacing:10
+            }]
+        },
+        options:{
+          cutout:220
+        }
+      }
+
+      return config
+}
+
+export function getTotal(transaction){
+    return _.sum(getSum(transaction))
 }
