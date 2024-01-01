@@ -1,16 +1,26 @@
 import React from 'react'
 import{useForm} from 'react-hook-form'
 import List from './List'
+import{default as api} from '../store/apiSlice'
 
 
 export default function Form() {
     const {handleSubmit,register,resetField}=useForm()
+    const[addTransaction]=api.useAddTransactionMutation()
+
+
+    const onSub=async(data)=>{
+      if(!data)return{}
+      await addTransaction(data).unwrap()
+      resetField("name")
+      resetField("amount")
+    }
+
     return (
     <div>
         <h1 className=' text-4xl font-bold'>TRANSACTIONS</h1>
         
-
-      <form onSubmit={handleSubmit(data=>{console.log(data)})} id='form'>
+      <form onSubmit={handleSubmit(onSub)} id='form'>
         <div className=' grid gap-4'>
         <div className=' input-group py-3'>
             <input {...register('name')} className=' p-3 form-input' type='text' placeholder='SIP,Salary,Products'>

@@ -1,19 +1,19 @@
-import{createSlice} from '@reduxjs/toolkit'
+import {createSlice} from '@reduxjs/toolkit'
 
 const initialState={
-    categories:[],
+    category:[],
     transaction:[]
 }
 
-const expenseSlice=createSlice({
+export const expenseSlice=createSlice({
     name:'expense',
     initialState,
     reducers:{
-        getTransactions:(state)=>{
+        getTransaction:(state)=>{
 
         }
     }
 })
 
-const{getTransactions}=expenseSlice.actions
+export const {getTransaction}=expenseSlice.actions
 export default expenseSlice.reducer

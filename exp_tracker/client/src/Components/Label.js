@@ -1,32 +1,31 @@
 import React from 'react'
-
-const obj=[
-  {
-    type:'Savings',
-    color:'#f9c74f',
-    percent:45
-
-  },
-  {
-    type:'Investment',
-    color:'#9d4edd',
-    percent:35
-
-  },
-  {
-    type:'expense',
-    color:'#f9c74f',
-    percent:20
-  }
-
-]
-
+import {default as api}from '../store/apiSlice'
+import { getSum } from '../helper/helper'
+import { getLabels } from '../helper/helper'
 
 export default function Label() {
+
+ const {data,isFetching,isSuccess,isError}= api.useGetLabelsQuery()
+
+ let transaction
+
+ if (isFetching) {
+  transaction=<div>Fetching data</div>
+ }
+
+ else if(isSuccess){
   
-  const traverse=obj.map((data,i)=>{return(<ShowLabelComponent key={i} objdata={data} />)})
+  transaction=getLabels(data,"type").map((v,i)=>{return(<ShowLabelComponent key={i} objdata={v} />)})
+ }
+
+ else if(isError){
+  transaction=<div>Error while fetching data</div>
+ }
+
+  
+  // const traverse=data.map((v,i)=>{return(<ShowLabelComponent key={i} objdata={v} />)})
   return(
-    traverse
+    transaction
   )
 }
 
@@ -41,7 +40,7 @@ function ShowLabelComponent(props){
       <h3 className=' text-md'>{props.objdata.type}</h3>
 
     </div>
-      <h3 className=' font-bold'>{props.objdata.percent}%</h3>
+      <h3 className=' font-bold'>{Math.round(props.objdata.percent)}%</h3>
   </div>
 
   )
